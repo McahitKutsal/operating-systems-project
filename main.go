@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	server, err := net.Listen("TCP", "127.0.01:8080")
+	server, err := net.Listen("tcp", "127.0.0.1:8098")
 	if err != nil {
 		panic(err)
 	}
@@ -52,7 +52,7 @@ func main() {
 				conn.Write([]byte(msg))
 			}
 		case dconn := <-deadConns:
-			log.Printf("Client: %v is gone\n", aconns[dconn])
+			log.Printf("Client: %v ayrıldı...\n", aconns[dconn])
 			delete(aconns, dconn)
 		}
 	}
